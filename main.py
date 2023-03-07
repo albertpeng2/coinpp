@@ -4,6 +4,7 @@ import os
 import pprint
 import torch
 import wandb
+import tqdm
 from coinpp.patching import Patcher
 from coinpp.training import Trainer
 from pathlib import Path
@@ -254,8 +255,7 @@ def main(args):
         model_path=model_path,
     )
 
-    for epoch in range(args.num_epochs):
-        print(f"\nEpoch {epoch + 1}:")
+    for epoch in tqdm(range(args.num_epochs), desc = "Epoch: "):
         trainer.train_epoch()
 
 
